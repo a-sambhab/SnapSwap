@@ -1,44 +1,63 @@
 import React from "react";
 import { WideCard } from "./WideCard";
+import { MutualFundPortfolio } from "./MutualFundPortfolio";
+import { useState } from "react";
 
 export const MutualFundsDashboard = () => {
-  const funds = [
+  const [flag, setFlag] = useState(0);
+
+  const data = [
     {
-      text: "largeCap",
-      img: "https://ik.imagekit.io/gourab18/Rectangle%205%20(2).png?updatedAt=1701613631720",
+      header: "YOUR HOLDINGS",
+      component: <Holdings />,
     },
     {
-      text: "midCap",
-      img: "https://ik.imagekit.io/gourab18/Rectangle%206%20(1).png?updatedAt=1701613631701",
-    },
-    {
-      text: "smallCap",
-      img: "https://ik.imagekit.io/gourab18/Rectangle%208%20(2).png?updatedAt=1701613631826",
+      header: "PORTFOLIO ANALYSIS",
+      component: <MutualFundPortfolio />,
     },
   ];
   return (
     <>
-      <div className="flex">
-        <div className="flex  min-h-[100vh]  w-[20vw] flex-col items-center justify-center gap-8 border-r-[0.005px] ">
-          {funds.map((fund, index) => {
-            return (
-              <div>
-                <img src={fund.img} />
-              </div>
-            );
-          })}
-        </div>
-        <div className="ml-4 flex  min-h-[100vh] flex-col items-center gap-8 py-6">
+      <div className="flex flex-col items-center justify-center">
+        <div className="my-5 flex w-[60vw]  flex-col  py-4">
           <div>
-            <WideCard img="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239" />
-          </div>
-          <div>
-            <WideCard img="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239" />
-          </div>
-          <div>
-            <WideCard img="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239" />
+            <WideCard />
           </div>
         </div>
+
+        <div className="flex items-center justify-center gap-12">
+          <div className="flex  ">
+            <button
+              className="text-xl font-medium text-white"
+              onClick={() => setFlag(0)}
+            >
+              YOUR HOLDINGS
+            </button>
+          </div>
+          <div className="">
+            <button
+              className="text-xl font-medium text-white"
+              onClick={() => setFlag(1)}
+            >
+              PORTFOLIO ANALYSIS
+            </button>
+          </div>
+        </div>
+
+        {flag == 0 ? <Holdings /> : <MutualFundPortfolio />}
+      </div>
+    </>
+  );
+};
+
+const Holdings = () => {
+  return (
+    <>
+      <div className="mt-4">
+        <WideCard img="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239" />
+      </div>
+      <div className="mt-4">
+        <WideCard img="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239" />
       </div>
     </>
   );
