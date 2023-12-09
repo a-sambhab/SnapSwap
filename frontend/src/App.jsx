@@ -8,10 +8,10 @@ import { TokenSwap } from "./components/TokenSwap";
 import { Congrats } from "./pages/Congrats";
 import { response } from "./data/response";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
   const allCoins = Object.keys(response);
-  // console.log("all",allCoins.length)
 
   const [largeCap, setLargeCap] = useState([]);
 
@@ -19,22 +19,46 @@ function App() {
 
   const [smallCap, setSmallCap] = useState([]);
 
-  useEffect(() => {
-    for (let i = 0; i < allCoins.length; i++) {
-      const data = {
-        name: allCoins[i],
-        ...response[allCoins[i]],
-      };
+  const fetchData = async () => {
+    try {
+      const response = await axios
+        .get(
+          "https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dht9a7tdv9q004vwph1x79fydqypd47dd8vzvy2zd8x51c406lf"
+        )
+        .then((data) => data.data);
+      const data = Object.keys(response);
 
-      if (response[allCoins[i]].risk === "low") {
-        setLargeCap((largeCap) => [...largeCap, data]);
-      } else if (response[allCoins[i]].risk === "mid") {
-        setMidCap((midCap) => [...midCap, data]);
-      } else if (response[allCoins[i]].risk === "high") {
-        setSmallCap((smallCap) => [...smallCap, data]);
+      // console.log(data.length);
+
+      for (let i = 0; i < data.length; i++) {
+        const val = {
+          name: data[i],
+          ...response[data[i]],
+        };
+
+        // console.log(val);
+
+        if (val.risk === "low") {
+          setLargeCap((largeCap) => [...largeCap, val]);
+        } else if (val.risk === "mid") {
+          // console.log(val);
+          setMidCap((midCap) => [...midCap, val]);
+        } else if (val.risk === "high") {
+          setSmallCap((smallCap) => [...smallCap, val]);
+        }
       }
-    }
+    } catch (error) {}
+
+    setLargeCap((largeCap) => largeCap.slice(0,10));
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
+
+  console.log(largeCap);
+  console.log(midCap);
+  console.log(smallCap);
 
   return (
     <>

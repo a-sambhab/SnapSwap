@@ -72,7 +72,7 @@ export const Navbar = () => {
     runMain();
   }, []);
 
-  console.log(tokens);
+  // console.log(tokens);
 
   return (
     <div className="flex  w-screen  items-center justify-between border-b-[0.005px] border-[#868686] px-12  py-2   text-white  md:text-[25px]">
