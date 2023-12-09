@@ -7,6 +7,7 @@ import { Finalswap } from "./components/Finalswap";
 import { TokenSwap } from "./components/TokenSwap";
 import { Congrats } from "./pages/Congrats";
 import { response } from "./data/response";
+import Compare from "./components/Compare"
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -19,6 +20,8 @@ function App() {
 
   const [smallCap, setSmallCap] = useState([]);
 
+  const [poolerData, setPoolerData] = useState({})
+
   const fetchData = async () => {
     try {
       const response = await axios
@@ -26,6 +29,12 @@ function App() {
           "https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dht9a7tdv9q004vwph1x79fydqypd47dd8vzvy2zd8x51c406lf"
         )
         .then((data) => data.data);
+      const pooler = await axios
+        .get(
+          "https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dm1uuht9e59h4qrvqs9pjx8a3cf1sz7x7j0vyyolywu8v3abls8"
+        )
+        // console.log(pooler.data)
+        setPoolerData(pooler.data)
       const data = Object.keys(response);
 
       // console.log(data.length);
@@ -56,9 +65,9 @@ function App() {
     fetchData();
   }, []);
 
-  console.log(largeCap);
-  console.log(midCap);
-  console.log(smallCap);
+  // console.log(largeCap);
+  // console.log(midCap);
+  // console.log(smallCap);
 
   return (
     <>
@@ -86,6 +95,12 @@ function App() {
           <Route exact path="/coins/:coin" element={<TokenSwap />}></Route>
 
           <Route exact path="/:swap" element={<Finalswap />}></Route>
+          <Route exact path="/compare" element={<Compare
+              largeCap={largeCap}
+              midCap={midCap}
+              smallCap={smallCap}
+              poolerData={poolerData}
+          />}></Route>
         </Routes>
       </div>
     </>

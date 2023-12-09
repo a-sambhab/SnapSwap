@@ -4,11 +4,12 @@ const cors = require('cors');
 const axios = require('axios');
 
 const app = express();
-
+const dotenv = require('dotenv')
+dotenv.config()
 app.use(express.json());
 app.use(cors());
 let config = {
-    headers: {'Authorization': 'Bearer iDF7DZjBGbDZD1zr0WIoVvV1lbqncuRu'},
+    headers: {'Authorization': `Bearer ${process.env.INCH_API_KEY}`},
     params: {
         "src": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
         "dst": "0x111111111117dc0aa78b770fa6a738034120c302",
@@ -34,6 +35,44 @@ app.get(`/test`, async(req, res) => {
         console.error(`Could not get products: ${error}`);
         res.json(error)
     });
+});
+
+app.post('/getexchangerate', async(req,res)=>{
+    console.log(req.body)
+    const exchangeconfig = {
+        headers: {
+            "Authorization": `Bearer ${process.env.INCH_API_KEY}`
+          },
+                params: {
+            "src": req.body.src,
+            "dst": req.body.dst,
+            "amount": "100000000000000",
+            "includeTokensInfo": "true",
+            "includeGas": "true",
+
+          }
+    }
+    await axios.get(`https://api.1inch.dev/swap/v5.2/1/quote`, exchangeconfig).then((response)=>{
+        const data = response.data
+        res.json(data)
+    }).catch(error=>{
+        console.error(`Could not get products: ${error}`)
+        res.json(error)
+    })
+})
+
+
+app.get('/gettokenlist', async(req,res)=>{
+    await axios
+        .get(
+            `https://api.1inch.dev/swap/v5.2/1/tokens`, config
+        ).then((response)=>{
+            const data = response.data;
+            res.json(data)
+        }).catch(error=>{
+            console.error(`Could not get products: ${error}`)
+            res.json(error)
+        });
 });
 
 const PORT = process.env.PORT || 8080;
