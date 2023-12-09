@@ -93,8 +93,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/a-sambhab"><img src="https://avatars.githubusercontent.com/u/84642011?v=4" width="100px;" alt=""/><br /><sub><b>Sai Sambhab</b></sub></a><br /><a href="https://github.com/a-sambhab/SnapSwap/commits?author=a-sambhab" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Gourab-18"><img src="https://avatars.githubusercontent.com/u/81527672?v=4" width="100px;" alt=""/><br /><sub><b>Gourab Nnanda</b></sub></a><br /><a href="https://github.com/a-sambhab/SnapSwap/commits?author=Gourab-18" title="Code">💻</a></td>
-	
 <td align="center"><a href="https://github.com/subrat0018"><img src="https://avatars.githubusercontent.com/u/89215102?v=4" width="100px;" alt=""/><br /><sub><b>Subrat Naha</b></sub></a><br /><a href="https://github.com/a-sambhab/SnapSwap/commits?author=subrat0018" title="Code">💻</a></td>
+<td align="center"><a href="https://github.com/inabinash"><img src="https://avatars.githubusercontent.com/u/78683499?v=4" width="100px;" alt=""/><br /><sub><b>Abinash Gupta</b></sub></a><br /><a href="https://github.com/inabinash/SnapSwap/commits?author=inabinash" title="Code">💻</a></td>
+	  <td align="center"><a href="https://github.com/kumarshantanu01"><img src="https://avatars.githubusercontent.com/u/76111005?v=4" width="100px;" alt=""/><br /><sub><b>Kumar Shantanu</b></sub></a><br /><a href="https://github.com/a-sambhab/SnapSwap/commits?author=kumarshantanu01" title="Code">💻</a></td>
   </tr>
 </table>
 
