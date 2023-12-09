@@ -66,6 +66,16 @@ Following technologies and libraries are used for the development of this websit
 * Fragmented Crypto Wealth Management
 * Complex Market Navigation
 
+## What We Solved
+* **Diversified Token Allocation:** Customize your portfolio to match your risk tolerance, making optimal token investments that suit your unique preferences and financial objectives for a well-rounded and personalized approach.
+
+* **Smart Fund Suggestions:** Leverage historical data to receive personalized fund recommendations, providing valuable insights that enhance decision-making, ensuring sustained growth aligned with your investment goals.
+
+* **Centralized Portfolio Management:** Streamline your crypto investments within a unified platform, offering a comprehensive view and effective management of your portfolio for simplified and efficient wealth tracking.
+
+* **Efficient Token Swapping:** Execute seamless token swaps with minimized gas fees, optimizing risk management strategies to maximize profitability and flexibility in your crypto investment journey.
+
+
 ## Screenshots
 
 <img src="images/Screenshot1.png" alt="Logo" width="100%">
