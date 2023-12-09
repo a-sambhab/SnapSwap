@@ -22,17 +22,17 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  const Token = await ethers.getContractFactory("Token");
-  const token = await Token.deploy();
-  await token.deployed();
+  const  SnapSwap = await ethers.getContractFactory("SnapSwap");
+  const snapSwap = await SnapSwap.deploy();
+  await snapSwap.deployed();
 
-  console.log("Token address:", token.address);
+  console.log("SnapSwap address:", snapSwap.address);
 
   // We also save the contract's artifacts and address in the frontend directory
-  saveFrontendFiles(token);
+  saveFrontendFiles(snapSwap);
 }
 
-function saveFrontendFiles(token) {
+function saveFrontendFiles(snapSwap) {
   const fs = require("fs");
   const contractsDir = path.join(__dirname, "..", "frontend", "src", "contracts");
 
@@ -42,14 +42,14 @@ function saveFrontendFiles(token) {
 
   fs.writeFileSync(
     path.join(contractsDir, "contract-address.json"),
-    JSON.stringify({ Token: token.address }, undefined, 2)
+    JSON.stringify({ SnapSwap: snapSwap.address }, undefined, 2)
   );
 
-  const TokenArtifact = artifacts.readArtifactSync("Token");
+  const SnapSwapArtifact = artifacts.readArtifactSync("SnapSwap");
 
   fs.writeFileSync(
-    path.join(contractsDir, "Token.json"),
-    JSON.stringify(TokenArtifact, null, 2)
+    path.join(contractsDir, "SnapSwap.json"),
+    JSON.stringify(SnapSwapArtifact, null, 2)
   );
 }
 
