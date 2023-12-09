@@ -39,13 +39,13 @@
     
    
    <li><a href="#problem">Problem</a></li>
-    <li><a href="#what-solved">What we solved</a></li>
+    <li><a href="#what-we-solved">What We Solved</a></li>
   </ol>
 </details>
 
 ## About The Project
 
-Meet SwapSnap, your easy-to-use platform for crypto investments. Make your own token collection, like a personal fund that fits your comfort. With SwapSnap, trading tokens is cheap and easy. It makes your crypto journey simple—buying and swapping tokens is straightforward. It's the best way to manage your crypto, with smooth trades and personalized plans that match how much risk you want. SwapSnap is here to make crypto simple and smart for you! Welcome to an easy and friendly way to handle crypto with SwapSnap!
+SwapSnap is the ultimate crypto investment platform that helps you craft personalized token collections resembling mutual funds based on your risk profile. You can make your own token collection, like a personal fund that fits your need. Trading tokens is cheap and easy with SnapSwap. It makes your crypto journey simple, buying and swapping tokens is very easy here. It's the best way to manage your crypto, with smooth trades and personalized plans that match how much risk you want. SwapSnap is here to make crypto simple and smart for you! Welcome to an easy and friendly way to handle crypto with SwapSnap!
 
 ## Built With
 
@@ -67,20 +67,20 @@ Following technologies and libraries are used for the development of this websit
 * Complex Market Navigation
 
 ## What We Solved
-* **Diversified Token Allocation:** Customize your portfolio to match your risk tolerance, making optimal token investments that suit your unique preferences and financial objectives for a well-rounded and personalized approach.
+* **Diversified Token Allocation:** Choose the tokens that match your comfort with risk. It's like creating your special portfolio that suits you well.
 
-* **Smart Fund Suggestions:** Leverage historical data to receive personalized fund recommendations, providing valuable insights that enhance decision-making, ensuring sustained growth aligned with your investment goals.
+* **Smart Fund Suggestions:** Use past info to get suggestions for your portfolio. This helps you make smart choices for growing your portfolio.
 
-* **Centralized Portfolio Management:** Streamline your crypto investments within a unified platform, offering a comprehensive view and effective management of your portfolio for simplified and efficient wealth tracking.
+* **Centralized Portfolio Management:** Keep all your crypto stuff in one easy place. See everything together to keep track and manage your portfolio in a simple way.
 
-* **Efficient Token Swapping:** Execute seamless token swaps with minimized gas fees, optimizing risk management strategies to maximize profitability and flexibility in your crypto investment journey.
-
+* **Efficient Token Swapping:** Easily trade tokens without spending a lot. It's like switching things up in your portfolio without it costing much.
 
 ## Screenshots
 
-<img src="images/Screenshot1.png" alt="Logo" width="100%">
-<img src="images/Screenshot2.png" alt="Logo" width="100%">
-<img src="images/Sceenshot3.png" alt="Logo" width="100%">
+![snapswap dashboard](https://github.com/a-sambhab/SnapSwap/assets/76111005/18bf21af-a465-4394-83c2-7c61d01fb157)
+![snapswap dashboard2](https://github.com/a-sambhab/SnapSwap/assets/76111005/a423006f-2baf-446d-9f59-a33f727c9c9c)
+
+
 
 ## Contributors ✨
 
@@ -91,8 +91,10 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/sambit-sankalp"><img src="https://avatars.githubusercontent.com/u/82284130?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sambit Sankalp</b></sub></a><br /><a href="https://github.com/sambit-sankalp/project-pilot/commits?author=sambit-sankalp" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/Sibasis-Malla"><img src="https://avatars.githubusercontent.com/u/72388732?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sibasis-Malla</b></sub></a><br /><a href="https://github.com/sambit-sankalp/project-pilot/commits?author=Sibasis-Malla" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/a-sambhab"><img src="https://avatars.githubusercontent.com/u/84642011?v=4" width="100px;" alt=""/><br /><sub><b>Sai Sambhab</b></sub></a><br /><a href="https://github.com/a-sambhab/SnapSwap/commits?author=a-sambhab" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Gourab-18"><img src="https://avatars.githubusercontent.com/u/81527672?v=4" width="100px;" alt=""/><br /><sub><b>Gourab Nnanda</b></sub></a><br /><a href="https://github.com/a-sambhab/SnapSwap/commits?author=Gourab-18" title="Code">💻</a></td>
+	
+<td align="center"><a href="https://github.com/subrat0018"><img src="https://avatars.githubusercontent.com/u/89215102?v=4" width="100px;" alt=""/><br /><sub><b>Subrat Naha</b></sub></a><br /><a href="https://github.com/a-sambhab/SnapSwap/commits?author=subrat0018" title="Code">💻</a></td>
   </tr>
 </table>
 
