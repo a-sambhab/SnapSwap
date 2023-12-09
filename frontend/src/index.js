@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import { useState, useEffect } from "react";
+
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "@rainbow-me/rainbowkit/styles.css";
 import {
@@ -10,11 +12,25 @@ import {
   darkTheme,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { mainnet, polygon, optimism, arbitrum, base, zora } from "wagmi/chains";
+import {
+  mainnet,
+  polygon,
+  optimism,
+  arbitrum,
+  base,
+  zora,
+  polygonMumbai,
+  baseGoerli,
+} from "wagmi/chains";
+import { useAccount, useBalance } from "wagmi";
+
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+
+const { Alchemy, Network } = require("alchemy-sdk");
+
 const { chains, publicClient } = configureChains(
-  [mainnet, polygon, optimism, arbitrum, base, zora],
+  [polygonMumbai, baseGoerli, mainnet, polygon, optimism, arbitrum, base, zora],
   [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
 );
 const { connectors } = getDefaultWallets({
@@ -31,7 +47,7 @@ const wagmiConfig = createConfig({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <React.StrictMode>
+  <>
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider
         chains={chains}
@@ -49,5 +65,5 @@ root.render(
       </RainbowKitProvider>
     </WagmiConfig>
     {/* <App /> */}
-  </React.StrictMode>
+  </>
 );

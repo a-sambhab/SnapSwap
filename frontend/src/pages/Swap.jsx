@@ -2,6 +2,7 @@ import React from "react";
 import { WideCard } from "../components/WideCard";
 import { TokenSwap } from "../components/TokenSwap";
 import { Finalswap } from "../components/Finalswap";
+import { Link } from "react-router-dom";
 export const Swap = () => {
   const funds = [
     {
@@ -27,7 +28,7 @@ export const Swap = () => {
         </div>
         <div className="">
           <button className=" rounded-lg bg-gradient-to-r from-[#427A53] to-[#258C91]  px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80">
-            Dashboard
+            Swapping
           </button>
         </div>
       </div>
@@ -44,21 +45,27 @@ export const Swap = () => {
         </div>
 
         <div className="ml-4 flex  min-h-[100vh] flex-col items-center gap-8 py-6">
-          <div>
-            <WideCard img="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239" />
-          </div>
-          <div>
-            <WideCard img="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239" />
-          </div>
-          <div>
-            <WideCard img="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239" />
-          </div>
+          <Link to="/coins/dg">
+            <div>
+              <WideCard img="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239" />
+            </div>
+          </Link>
+          <Link to="/coins/sl">
+            <div>
+              <WideCard img="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239" />
+            </div>
+          </Link>
+          <Link to="/coins/eth">
+            <div>
+              <WideCard img="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239" />
+            </div>
+          </Link>
         </div>
       </div>
 
-      <TokenSwap img="" />
+      {/* <TokenSwap img="" /> */}
 
-      <Finalswap />
+      {/* <Finalswap /> */}
     </div>
   );
 };

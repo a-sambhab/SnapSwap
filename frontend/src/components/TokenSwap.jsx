@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 export const TokenSwap = ({ img }) => {
   return (
     <>
@@ -42,9 +42,11 @@ export const TokenSwap = ({ img }) => {
           </div>
 
           <div className="mt-4" style={{ alignItems: "flexEnd" }}>
-            <button className=" rounded-sm bg-[#132831]  px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80">
-              Swap Token
-            </button>
+            <Link to="/dg">
+              <button className=" rounded-sm bg-[#132831]  px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80">
+                Swap Token
+              </button>
+            </Link>
           </div>
         </div>
 

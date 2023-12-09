@@ -1,8 +1,16 @@
 import React from "react";
 import { MutualFundsExplore } from "../components/MutualFundsExplore";
 import { MutualFundsDashboard } from "../components/MutualFundsDashboard";
-import { useState } from "react";
-export const MutualFunds = () => {
+import { response } from "../data/response";
+import { useState, useEffect } from "react";
+export const MutualFunds = ({ largeCap, smallCap, midCap }) => {
+  console.log(largeCap);
+
+  // console.log("large",largeCap.length);
+
+  // console.log("mid",midCap.length)
+  // console.log("small",smallCap.length);
+
   const [flag, setFlag] = useState(0);
 
   const data = [
@@ -46,7 +54,15 @@ export const MutualFunds = () => {
         </div>
       </div>
 
-      {flag === 0 ? <MutualFundsExplore /> : <MutualFundsDashboard />}
+      {flag === 0 ? (
+        <MutualFundsExplore
+          largeCap={largeCap}
+          midCap={midCap}
+          smallCap={smallCap}
+        />
+      ) : (
+        <MutualFundsDashboard />
+      )}
     </div>
   );
 };
