@@ -97,12 +97,24 @@ function App() {
               />
             }
           ></Route>
-          <Route exact path="/token" element={<Swap />}></Route>
+          <Route
+            exact
+            path="/token"
+            element={
+              <Swap poolerData={poolerData} responseData={responseData} />
+            }
+          ></Route>
           <Route exact path="/congrats" element={<Congrats />}></Route>
 
           <Route exact path="/invest/:fund" element={<TokenSwap />}></Route>
 
-          <Route exact path="/coins/:coin" element={<TokenSwap />}></Route>
+          <Route
+            exact
+            path="/coins/:coin"
+            element={
+              <TokenSwap poolerData={poolerData} responseData={responseData} />
+            }
+          ></Route>
 
           <Route exact path="/:swap" element={<Finalswap />}></Route>
           <Route

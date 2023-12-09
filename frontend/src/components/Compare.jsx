@@ -14,12 +14,12 @@ const Chart = (props) => {
     console.log(props);
     if (props.token1 && props.token2) {
       setToken1data(
-        props.token2.map((item) => {
+        props.token1.map((item) => {
           return { y: item.price, label: item.epoch };
         })
       );
       setToken2data(
-        props.token1.map((item) => {
+        props.token2.map((item) => {
           return { y: item.price, label: item.epoch };
         })
       );
@@ -39,14 +39,14 @@ const Chart = (props) => {
     },
     data: [
       {
-        type: "spline",
-        name: "token1",
+        type: "area",
+        name: props.name1,
         showInLegend: true,
         dataPoints: token1data,
       },
       {
-        type: "spline",
-        name: "token2",
+        type: "area",
+        name: props.name2,
         showInLegend: true,
         dataPoints: token2data,
       },
@@ -126,7 +126,7 @@ const Compare = (props) => {
         <div className="w-3/4 h-full">
           {token1 && token2 ? (
             <>
-              <Chart token1={poolerData[token1]} token2={poolerData[token2]} />
+              <Chart token1={poolerData[token1]} name1={token1} name2={token2} token2={poolerData[token2]} />
             </>
           ) : (
             <></>
