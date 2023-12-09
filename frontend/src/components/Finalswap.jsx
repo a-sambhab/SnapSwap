@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { usePublicClient } from "wagmi";
 import { useAccount } from "wagmi";
 import axios from "axios";
 
 export const Finalswap = () => {
+  const {swap} = useParams()
+  console.log(swap)
 
   const { address, isConnecting, isDisconnected } = useAccount();
   const [tokenlist, setTokenlist] = useState([]);
@@ -19,8 +21,13 @@ export const Finalswap = () => {
   const [toAmount, setToAmount] = useState();
   const gettokenlist = async () => {
     const response = await axios.get("http://localhost:8080/gettokenlist");
-    console.log(response);
+    console.log(response.data.tokens);
     setTokenlist(response.data.tokens);
+    Object.keys(response.data.tokens).map(token=>{
+      if(response.data.tokens[token].symbol===swap){
+        setToAddress(token)
+      }
+    })
   };
   useEffect(() => {
     gettokenlist();
@@ -31,7 +38,7 @@ export const Finalswap = () => {
       src: fromAddress,
       dst: toAddress,
       chain: 1
-    });
+    });   
     console.log(response);
     setExchange(Number(response.data.toAmount));
   };
@@ -91,9 +98,9 @@ export const Finalswap = () => {
               <input
                 className="w-[100%] p-2 border-1 border-[#000000] rounded-l-xl"
                 type="text"
-                placeholder="100"
+                placeholder="0"
                 value={toAmount}
-                readonly
+                readonly="true"
               />
             </div>
 
@@ -105,6 +112,7 @@ export const Finalswap = () => {
                   setToAddress(e.target.value);
                   getexchangerate();
                 }}
+                disabled="true"
                 value={toAddress}
               >
                 {Object.keys(tokenlist).map((token) => {

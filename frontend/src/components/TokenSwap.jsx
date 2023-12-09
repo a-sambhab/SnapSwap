@@ -13,7 +13,7 @@ const Chart = (props) => {
     if (props.token1) {
       setToken1data(
         props.token1.map((item) => {
-          return { y: item.price, label: item.epoch };
+          return { y: item[props.parameter], label: item.epoch };
         })
       );
       // setToken2data(
@@ -30,7 +30,7 @@ const Chart = (props) => {
       text: "Comparison of Tokens",
     },
     axisY: {
-      title: "Price",
+      title: props.parameter,
     },
     toolTip: {
       shared: true,
@@ -55,6 +55,8 @@ export const TokenSwap = (props) => {
   const {coin} = useParams()
   const [response, setresponse] = useState(props.responseData[coin])
   const [pooler, setPooler] = useState(props.poolerData[coin])
+  const [parameter, setParameter] = useState("price")
+
   // console.log(props.responseData[coin], props.poolerData[coin])
   useEffect(() => {
     setresponse(props.responseData[coin])
@@ -64,8 +66,8 @@ export const TokenSwap = (props) => {
   return (
 
     <>
-      <div className=" mx-auto mt-12 flex h-[60vh] w-[80vw] rounded-lg bg-gradient-to-r from-[#427A53] to-[#258C91]	">
-        <div className="flex w-[40%] flex-col items-center justify-center ">
+      <div className=" mx-auto mt-12 flex h-[80vh] w-[80vw] rounded-lg bg-gradient-to-r from-[#427A53] to-[#258C91]	">
+        <div className="flex w-[40%]  flex-col items-center justify-center ">
           <div className="flex w-[60%] justify-around my-4 ">
             <div>
               <img
@@ -111,9 +113,18 @@ export const TokenSwap = (props) => {
           </div>
         </div>
 
-        <div className="w-[60%] ">
+        <div className="w-[60%] m-auto mr-4">
+        <div className="w-full h-1/5 flex flex-row justify-evenly items-center text-xl text-white" onChange={(e)=>{setParameter(e.target.value)}} value={parameter}>
+          Select Parameter
+          <select className="w-[20%] p-2 border-1 border-[#000000] rounded-md text-black">
+            <option value="price">Price</option>
+            <option value="priceChange24h">Price Change</option>
+            <option value="volume24h">Volume in 24h</option>
+            <option value="liquidity">Liquidity</option>
+          </select>
+        </div>
           <div className="mt-6 flex items-center justify-center">
-            <Chart token1={pooler} coin={coin}/>
+            <Chart token1={pooler} coin={coin} parameter={parameter}/>
           </div>{" "}
         </div>
       </div>
