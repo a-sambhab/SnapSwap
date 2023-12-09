@@ -37,11 +37,9 @@
       </ul>
         <li><a href="#built-with">Built With</a></li>
     
-    </li>
    
-    <li><a href="#description">Description</a></li>
-    <li><a href="#screenshots">Screenshots</a></li>
-    <li><a href="#contributors">Contributors</a></li>
+   <li><a href="#problem">Problem</a></li>
+    <li><a href="#what-solved">What we solved</a></li>
   </ol>
 </details>
 
