@@ -110,4 +110,4 @@ upload = lh.upload(source = "trial.txt", tag=tag)
 list_uploads = lh.download(upload['data']['Hash'])
 
 print(upload['data']['Hash'])
-response = requests.get("https://api.lighthouse.storage/api/ipns/publish_record?cid="+upload['data']['Hash']+"&keyName=ce2cd41551564889a3fab52b125190b3", headers={"Authorization": "Bearer 6b691914.6940cf296607421aa60945184a348ff7"})
+response = requests.get("https://api.lighthouse.storage/api/ipns/publish_record?cid="+upload['data']['Hash']+"&keyName=ce2cd41551564889a3fab52b125190b3", headers={"Authorization": "Bearer "+os.getenv("LHKey")})
