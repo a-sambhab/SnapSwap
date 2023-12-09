@@ -45,7 +45,7 @@
 
 ## About The Project
 
- Introducing SwapSnap, your go-to platform for hassle-free crypto investments. Easily create diverse token collections like personalized mutual funds, designed to match your risk preferences. What makes SwapSnap unique is its cost-effective swapping feature, ensuring you can exchange tokens with minimal fees. Simplify your crypto journey with SwapSnap, where buying and swapping tokens is straightforward and user-friendly. It's the ultimate solution for crafting your crypto portfolio, executing seamless swaps, and optimizing your investment experience—all tailored to your risk profile. Welcome to a smarter, simpler way to navigate the world of crypto with SwapSnap! 
+Meet SwapSnap, your easy-to-use platform for crypto investments. Make your own token collection, like a personal fund that fits your comfort. With SwapSnap, trading tokens is cheap and easy. It makes your crypto journey simple—buying and swapping tokens is straightforward. It's the best way to manage your crypto, with smooth trades and personalized plans that match how much risk you want. SwapSnap is here to make crypto simple and smart for you! Welcome to an easy and friendly way to handle crypto with SwapSnap!
 
 ## Built With
 
