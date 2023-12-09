@@ -23,7 +23,7 @@
 import requests
 import time
 import json
-import data
+# import data
 import io
 from lighthouseweb3 import Lighthouse
 from dotenv import load_dotenv
@@ -33,45 +33,73 @@ dict = {}
 
 def day0():
     global dict
-    closeEpocUrl = 'https://uniswapv2-api.powerloom.io/current_epoch' 
-    closeEpoc = int(json.loads(requests.get(closeEpocUrl).text)["epochId"])
-    for coin in data.data:
-      openEpoc = 1
-      for epoc in range(openEpoc, closeEpoc - 240, 240):
-        openUrl = f'https://uniswapv2-api.powerloom.io/data/{epoc + 24}/{coin["job"]}' 
-        closeUrl = f'https://uniswapv2-api.powerloom.io/data/{epoc}/{coin["job"]}'
-        openResponse = json.loads(requests.get(openUrl).text)
-        openPrice = openResponse['token0Prices'][list(openResponse['token0Prices'].keys())[0]]
-        closeResponse = json.loads(requests.get(closeUrl).text)
-        closePrice = closeResponse['token0Prices'][list(closeResponse['token0Prices'].keys())[0]]
-        try:
-          dict[coin['contract']].append([openPrice, closePrice])
-        except:
-          dict[coin['contract']] = [[openPrice, closePrice]]
+    job = "aggregate_24h_top_tokens_lite:9fb408548a732c85604dacb9c956ffc2538a3b895250741593da630d994b1f27:UNISWAPV2/"
+    EpocUrl = 'https://uniswapv2-api.powerloom.io/current_epoch' 
+    Epoc = int(json.loads(requests.get(EpocUrl).text)["epochId"])
+    for epoc in range(1, Epoc - 300, 300):
+      try:
+        openUrl = f'https://uniswapv2-api.powerloom.io/data/{epoc}/{job}' 
+        response = json.loads(requests.get(openUrl).text)["tokens"]
+        for Response in response:
+          coinName = Response["symbol"]
+          coinPrice = Response["price"]
+          priceChange24h = Response["priceChange24h"]
+          volume24h = Response["volume24h"]
+          liquidity = Response["liquidity"]
+          try:
+            dict[coinName].append({
+              "price": coinPrice,
+              "priceChange24h":priceChange24h,
+              "volume24h": volume24h,
+              "liquidity": liquidity
+            })
+          except:
+            dict[coinName] = [{
+              "price": coinPrice,
+              "priceChange24h":priceChange24h,
+              "volume24h": volume24h,
+              "liquidity": liquidity
+            }]
+      except:
+        print(epoc)
+    print(dict)
     return dict
         
 def daily():
     global dict
-    closeEpocUrl = 'https://uniswapv2-api.powerloom.io/current_epoch' 
-    closeEpoc = int(json.loads(requests.get(closeEpocUrl).text)["epochId"])
-    for coin in data.data:
-      openEpoc = max(closeEpoc - 720, 1)
-      openUrl = f'https://uniswapv2-api.powerloom.io/data/{openEpoc}/{coin["job"]}' 
-      closeUrl = f'https://uniswapv2-api.powerloom.io/data/{closeEpoc}/{coin["job"]}'
-      openResponse = json.loads(requests.get(openUrl).text)
-      openPrice = openResponse['token0Prices'][list(openResponse['token0Prices'].keys())[0]]
-      closeResponse = json.loads(requests.get(closeUrl).text)
-      closePrice = closeResponse['token0Prices'][list(closeResponse['token0Prices'].keys())[0]]
+    job = "aggregate_24h_top_tokens_lite:9fb408548a732c85604dacb9c956ffc2538a3b895250741593da630d994b1f27:UNISWAPV2/"
+    EpocUrl = 'https://uniswapv2-api.powerloom.io/current_epoch' 
+    Epoc = int(json.loads(requests.get(EpocUrl).text)["epochId"]) - 1
+    openUrl = f'https://uniswapv2-api.powerloom.io/data/{Epoc}/{job}' 
+    response = json.loads(requests.get(openUrl).text)["tokens"]
+    print(response)
+    for Response in response:
+      coinName = Response["symbol"]
+      coinPrice = Response["price"]
+      priceChange24h = Response["priceChange24h"]
+      volume24h = Response["volume24h"]
+      liquidity = Response["liquidity"]
       try:
-        dict[coin['contract']].append([openPrice, closePrice])
+        dict[coinName].append({
+          "price": coinPrice,
+          "priceChange24h":priceChange24h,
+          "volume24h": volume24h,
+          "liquidity": liquidity
+        })
       except:
-        dict[coin['contract']] = [[openPrice, closePrice]]
+        dict[coinName] = [{
+          "price": coinPrice,
+          "priceChange24h":priceChange24h,
+          "volume24h": volume24h,
+          "liquidity": liquidity
+        }]
+    print(dict)
     return dict
 
 load_dotenv()
 response = requests.get("https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dm1uuht9e59h4qrvqs9pjx8a3cf1sz7x7j0vyyolywu8v3abls8")
 dict = json.loads(response.text)
-dailyData = day0()
+dailyData = daily()
 lh = Lighthouse(token=os.getenv("LHKey"))
 result = json.dumps(dailyData)
 write_file = open("trial.txt", "w")
