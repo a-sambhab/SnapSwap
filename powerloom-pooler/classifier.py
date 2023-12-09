@@ -7,6 +7,8 @@ import os
 import json
 from dotenv import load_dotenv
 url = requests.get("https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dm1uuht9e59h4qrvqs9pjx8a3cf1sz7x7j0vyyolywu8v3abls8").text
+if(url == "{}"):
+    print("You need some data to run your model")
 response = requests.get(f"https://gateway.lighthouse.storage/ipfs/{url}")
 data=response.json()
 load_dotenv()

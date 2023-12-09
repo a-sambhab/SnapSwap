@@ -14,23 +14,23 @@ data = [{'contract': 'CDS', 'job': 'pairContract_pair_total_reserves:0x0be902716
 {'contract': 'PAXG', 'job': 'pairContract_pair_total_reserves:0x6d74443bb2d50785989a7212ebfd3a8dbabd1f60:UNISWAPV2/'},
 {'contract': 'ANT', 'job': 'pairContract_pair_total_reserves:0x9def9511fec79f83afcbffe4776b1d817dc775ae:UNISWAPV2/'}]
 
-# import requests
-# import time
-# import json
-# import data
-# import io
-# from lighthouseweb3 import Lighthouse
-# from dotenv import load_dotenv
-# import os
-# load_dotenv()
-# lh = Lighthouse(token=os.getenv("LHKey"))
-# result = json.dumps({})
-# write_file = open("trial.txt", "w")
-# write_file.write(result)
-# write_file.close()
-# tag = "powerloomData"
-# upload = lh.upload(source = "trial.txt", tag=tag)
-# list_uploads = lh.download(upload['data']['Hash'])
+import requests
+import time
+import json
+import data
+import io
+from lighthouseweb3 import Lighthouse
+from dotenv import load_dotenv
+import os
+load_dotenv()
+lh = Lighthouse(token=os.getenv("LHKey"))
+result = json.dumps({})
+write_file = open("trial.txt", "w")
+write_file.write(result)
+write_file.close()
+tag = "powerloomData"
+upload = lh.upload(source = "trial.txt", tag=tag)
+list_uploads = lh.download(upload['data']['Hash'])
 
-# print(upload['data']['Hash'])
-# response = requests.get("https://api.lighthouse.storage/api/ipns/publish_record?cid="+upload['data']['Hash']+"&keyName=ce2cd41551564889a3fab52b125190b3", headers={"Authorization": "Bearer 6b691914.6940cf296607421aa60945184a348ff7"})
+print(upload['data']['Hash'])
+response = requests.get("https://api.lighthouse.storage/api/ipns/publish_record?cid="+upload['data']['Hash']+"&keyName=ce2cd41551564889a3fab52b125190b3", headers={"Authorization": "Bearer 6b691914.6940cf296607421aa60945184a348ff7"})

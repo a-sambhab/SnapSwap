@@ -51,14 +51,16 @@ def day0():
               "price": coinPrice,
               "priceChange24h":priceChange24h,
               "volume24h": volume24h,
-              "liquidity": liquidity
+              "liquidity": liquidity,
+              "epoch": epoc
             })
           except:
             dict[coinName] = [{
               "price": coinPrice,
               "priceChange24h":priceChange24h,
               "volume24h": volume24h,
-              "liquidity": liquidity
+              "liquidity": liquidity,
+              "epoch": epoc
             }]
       except:
         print(epoc)
@@ -84,22 +86,26 @@ def daily():
           "price": coinPrice,
           "priceChange24h":priceChange24h,
           "volume24h": volume24h,
-          "liquidity": liquidity
+          "liquidity": liquidity,
+          "epoch": Epoc
         })
       except:
         dict[coinName] = [{
           "price": coinPrice,
           "priceChange24h":priceChange24h,
           "volume24h": volume24h,
-          "liquidity": liquidity
+          "liquidity": liquidity,
+          "epoch": Epoc
         }]
     print(dict)
     return dict
 
 load_dotenv()
 url = requests.get("https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dm1uuht9e59h4qrvqs9pjx8a3cf1sz7x7j0vyyolywu8v3abls8").text
-response = requests.get(f"https://gateway.lighthouse.storage/ipfs/{url}")
-dict = json.loads(response.text)
+
+if(url != "{}"):
+  response = requests.get(f"https://gateway.lighthouse.storage/ipfs/{url}")
+  dict = json.loads(response.text)
 dailyData = daily()
 lh = Lighthouse(token=os.getenv("LHKey"))
 result = json.dumps(dailyData)
