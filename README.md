@@ -45,7 +45,7 @@
 
 ## About The Project
 
- SwapSnap is the ultimate crypto investment platform that helps you craft personalized token collections resembling mutual funds based on your risk profile. Also we do cost-effective swaps, ensuring seamless exchanges with minimal fees. 
+ Introducing SwapSnap, your go-to platform for hassle-free crypto investments. Easily create diverse token collections like personalized mutual funds, designed to match your risk preferences. What makes SwapSnap unique is its cost-effective swapping feature, ensuring you can exchange tokens with minimal fees. Simplify your crypto journey with SwapSnap, where buying and swapping tokens is straightforward and user-friendly. It's the ultimate solution for crafting your crypto portfolio, executing seamless swaps, and optimizing your investment experience—all tailored to your risk profile. Welcome to a smarter, simpler way to navigate the world of crypto with SwapSnap! 
 
 ## Built With
 
@@ -58,9 +58,13 @@ Following technologies and libraries are used for the development of this websit
 - [Nodejs](https://nodejs.org/en)
 
 
-## Description
+## Problem
 
-Welcome to SwapSnap, the ultimate crypto investment platform. Craft personalized token collections resembling mutual funds based on your risk profile. Experience cost-effective swaps, ensuring seamless exchanges with minimal fees. Simplify your crypto journey and optimize your investments with SwapSnap.
+* Diverse Portfolios, Unfriendly Platforms
+* Gas Fee Profitability Challenges
+* Token Tracking Inefficiencies
+* Fragmented Crypto Wealth Management
+* Complex Market Navigation
 
 ## Screenshots
 
