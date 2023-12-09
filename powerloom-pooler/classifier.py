@@ -6,7 +6,8 @@ import math
 import os
 import json
 from dotenv import load_dotenv
-response = requests.get("https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dm1uuht9e59h4qrvqs9pjx8a3cf1sz7x7j0vyyolywu8v3abls8")
+url = requests.get("https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dm1uuht9e59h4qrvqs9pjx8a3cf1sz7x7j0vyyolywu8v3abls8").text
+response = requests.get(f"https://gateway.lighthouse.storage/ipfs/{url}")
 data=response.json()
 load_dotenv()
 lh = Lighthouse(token=os.getenv("LHKey"))
@@ -62,6 +63,11 @@ write_file.write(result)
 write_file.close()
 tag="volatility"
 upload = lh.upload(source="responses.txt", tag=tag)
-print(upload)
+print(upload['data']['Hash'])
 
-response = requests.get("https://api.lighthouse.storage/api/ipns/publish_record?cid="+upload['data']['Hash']+"&keyName=8b014eaaacb14f5aa089a26886e92958", headers={"Authorization": "Bearer "+os.getenv("LHKey")})
+cid_write_file = open("cid.txt", "w")
+cid_write_file.write(upload['data']['Hash'])
+cid_write_file.close()
+uploadCID = lh.upload(source="cid.txt", tag="CID")
+
+response = requests.get("https://api.lighthouse.storage/api/ipns/publish_record?cid="+uploadCID['data']['Hash']+"&keyName=8b014eaaacb14f5aa089a26886e92958", headers={"Authorization": "Bearer "+os.getenv("LHKey")})

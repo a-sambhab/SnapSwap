@@ -36,7 +36,7 @@ def day0():
     job = "aggregate_24h_top_tokens_lite:9fb408548a732c85604dacb9c956ffc2538a3b895250741593da630d994b1f27:UNISWAPV2/"
     EpocUrl = 'https://uniswapv2-api.powerloom.io/current_epoch' 
     Epoc = int(json.loads(requests.get(EpocUrl).text)["epochId"])
-    for epoc in range(1, Epoc - 300, 300):
+    for epoc in range(1, Epoc - 100, 100):
       try:
         openUrl = f'https://uniswapv2-api.powerloom.io/data/{epoc}/{job}' 
         response = json.loads(requests.get(openUrl).text)["tokens"]
@@ -97,7 +97,8 @@ def daily():
     return dict
 
 load_dotenv()
-response = requests.get("https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dm1uuht9e59h4qrvqs9pjx8a3cf1sz7x7j0vyyolywu8v3abls8")
+url = requests.get("https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dm1uuht9e59h4qrvqs9pjx8a3cf1sz7x7j0vyyolywu8v3abls8").text
+response = requests.get(f"https://gateway.lighthouse.storage/ipfs/{url}")
 dict = json.loads(response.text)
 dailyData = daily()
 lh = Lighthouse(token=os.getenv("LHKey"))
@@ -107,7 +108,14 @@ write_file.write(result)
 write_file.close()
 tag = "powerloomData"
 upload = lh.upload(source = "trial.txt", tag=tag)
-list_uploads = lh.download(upload['data']['Hash'])
+
+cid_write_file = open("cid.txt", "w")
+cid_write_file.write(upload['data']['Hash'])
+cid_write_file.close()
+uploadCID = lh.upload(source="cid.txt", tag="CID")
+# list_uploads = lh.download(upload['data']['Hash'])
+
+
 
 print(upload['data']['Hash'])
-response = requests.get("https://api.lighthouse.storage/api/ipns/publish_record?cid="+upload['data']['Hash']+"&keyName=ce2cd41551564889a3fab52b125190b3", headers={"Authorization": "Bearer "+os.getenv("LHKey")})
+response = requests.get("https://api.lighthouse.storage/api/ipns/publish_record?cid="+uploadCID['data']['Hash']+"&keyName=ce2cd41551564889a3fab52b125190b3", headers={"Authorization": "Bearer "+os.getenv("LHKey")})
