@@ -1,6 +1,10 @@
 import React from "react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount } from "wagmi";
 
 export const Landing = () => {
+  const { address, isConnecting, isDisconnected } = useAccount();
+
   const images = [
     "https://ik.imagekit.io/gourab18/image%208.png?updatedAt=1701609460323",
     "https://ik.imagekit.io/gourab18/image%2011.png?updatedAt=1701609460337",
@@ -29,9 +33,18 @@ export const Landing = () => {
             </div>
 
             <div>
-              <button className=" rounded-sm bg-[#132831]  px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80">
-                Connect Wallet
-              </button>
+              {isDisconnected && (
+                <button className=" rounded-sm bg-[#132831]  px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80">
+                  Connect Wallet
+                </button>
+              )}
+
+              {/* { {isDisconnected && (
+                <ConnectButton
+                  showBalance={true}
+                  chainStatus="icon"
+                /> }
+              )} */}
             </div>
           </div>
 

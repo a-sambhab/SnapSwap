@@ -28,7 +28,9 @@ export const MutualFundsDashboard = () => {
         <div className="flex items-center justify-center gap-12">
           <div className="flex  ">
             <button
-              className="text-xl font-medium text-white"
+              className={`text-xl font-medium  ${
+                flag == 0 ? "text-[#18BB90]" : "text-white"
+              }`}
               onClick={() => setFlag(0)}
             >
               YOUR HOLDINGS
@@ -36,7 +38,9 @@ export const MutualFundsDashboard = () => {
           </div>
           <div className="">
             <button
-              className="text-xl font-medium text-white"
+              className={`text-xl font-medium  ${
+                flag == 1 ? "text-[#18BB90]" : "text-white"
+              }`}
               onClick={() => setFlag(1)}
             >
               PORTFOLIO ANALYSIS

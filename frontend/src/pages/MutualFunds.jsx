@@ -20,8 +20,13 @@ export const MutualFunds = () => {
       {/* <h1 className="text-3xl font-medium text-white text-center my-4	">Invest In Our Funds</h1> */}
       <div className="flex items-center justify-center gap-12">
         <div className="">
+          {/* flag == 0 ? "text-[#18BB90]" : "text-white" */}
           <button
-            className=" rounded-lg bg-gradient-to-r from-[#427A53] to-[#258C91] px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80"
+            className={`rounded-lg ${
+              flag == 0
+                ? "bg-gradient-to-r from-[#427A53] to-[#258C91]"
+                : "bg-[#18BB90]"
+            } px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80`}
             onClick={() => setFlag(0)}
           >
             Explore
@@ -29,7 +34,11 @@ export const MutualFunds = () => {
         </div>
         <div className="">
           <button
-            className=" rounded-lg  bg-gradient-to-r from-[#427A53] to-[#258C91]  px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80"
+            className={`rounded-lg  ${
+              flag == 1
+                ? "bg-gradient-to-r from-[#427A53] to-[#258C91]"
+                : "bg-[#18BB90]"
+            }  px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80"`}
             onClick={() => setFlag(1)}
           >
             Dashboard
