@@ -1,5 +1,5 @@
 import React from "react";
-// import { SmallWideCard } from "./SmallWideCard";
+import { SmallWideCard } from "./SmallWideCard";
 export const MutualFundPortfolio = () => {
   return (
     <>
@@ -26,9 +26,6 @@ export const MutualFundPortfolio = () => {
               />
             </div>
 
-            {/* <div className=" mt-6 w-[20vw] ">
-              <SmallWideCard />
-            </div>
             <div className=" mt-6 w-[20vw] ">
               <SmallWideCard />
             </div>
@@ -37,7 +34,10 @@ export const MutualFundPortfolio = () => {
             </div>
             <div className=" mt-6 w-[20vw] ">
               <SmallWideCard />
-            </div> */}
+            </div>
+            <div className=" mt-6 w-[20vw] ">
+              <SmallWideCard />
+            </div>
           </div>
           <div className="">
             <div>
@@ -53,15 +53,15 @@ export const MutualFundPortfolio = () => {
               />
             </div>
 
-            {/* <div className=" mt-6 w-[20vw] ">
-              <SmallWideCard />
-            </div>
             <div className=" mt-6 w-[20vw] ">
               <SmallWideCard />
             </div>
             <div className=" mt-6 w-[20vw] ">
               <SmallWideCard />
-            </div> */}
+            </div>
+            <div className=" mt-6 w-[20vw] ">
+              <SmallWideCard />
+            </div>
           </div>
         </div>
       </div>
