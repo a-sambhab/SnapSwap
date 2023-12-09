@@ -1,17 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { usePublicClient } from "wagmi";
 import { useAccount } from "wagmi";
+import axios from "axios";
 
 export const Finalswap = () => {
-  // const publicClient = usePublicClient({
-  //   chainId: 1,
-  // });
-  // console.log(publicClient);
+
   const { address, isConnecting, isDisconnected } = useAccount();
+  const [tokenlist, setTokenlist] = useState([]);
+  const [fromAddress, setFromAddress] = useState(
+    "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  );
+  const [toAddress, setToAddress] = useState(
+    "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  );
+  const [fromAmount, setFromAmount] = useState(0);
+  const [exchange, setExchange] = useState(0);
+  const [toAmount, setToAmount] = useState();
+  const gettokenlist = async () => {
+    const response = await axios.get("http://localhost:8080/gettokenlist");
+    console.log(response);
+    setTokenlist(response.data.tokens);
+  };
+  useEffect(() => {
+    gettokenlist();
+  }, []);
+  const getexchangerate = async (e) => {
+    console.log("getting exchange");
+    const response = await axios.post("http://localhost:8080/getexchangerate", {
+      src: fromAddress,
+      dst: toAddress,
+    });
+    console.log(response);
+    setExchange(Number(response.data.toAmount));
+  };
   // console.log("Huu", isDisconnected);
 
-  console.log(address);
   return (
     <div className=" mx-auto mt-12 flex h-[60vh] w-[50vw] flex-col justify-between rounded-lg bg-gradient-to-r from-[#427A53] to-[#258C91]	">
       <div className="flex justify-evenly items-center flex-col w-full h-4/5 ">
@@ -25,16 +49,32 @@ export const Finalswap = () => {
               <input
                 className="w-[100%] p-2 border-1 border-[#000000] rounded-l-xl"
                 type="text"
-                placeholder="$550"
+                placeholder="Enter swap amount"
+                value={fromAmount}
+                onChange={(e) => {
+                  setFromAmount(e.target.value);
+                  setToAmount((e.target.value * exchange) / 100000000000000);
+                }}
               />
             </div>
 
             <div className="w-[40%]  ">
-              <select id="" className=" w-[100%]  border  p-2  rounded-r-xl ">
-                <option value="US">eth</option>
-                <option value="CA">usdc</option>
-                <option value="FR">doge</option>
-                <option value="DE">solana</option>
+              <select
+                id=""
+                className=" w-[100%]  border  p-2  rounded-r-xl "
+                onChange={(e) => {
+                  setFromAddress(e.target.value);
+                  getexchangerate();
+                }}
+                value={fromAddress}
+              >
+                {Object.keys(tokenlist).map((token) => {
+                  return (
+                    <option value={tokenlist[token].address}>
+                      {tokenlist[token].symbol}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>
@@ -51,12 +91,28 @@ export const Finalswap = () => {
                 className="w-[100%] p-2 border-1 border-[#000000] rounded-l-xl"
                 type="text"
                 placeholder="100"
+                value={toAmount}
+                readonly
               />
             </div>
 
             <div className="w-[40%] ">
-              <select id="" className=" w-[100%]   border  p-2 rounded-r-xl ">
-                <option value="US">eth</option>
+              <select
+                id=""
+                className=" w-[100%]   border  p-2 rounded-r-xl "
+                onChange={(e) => {
+                  setToAddress(e.target.value);
+                  getexchangerate();
+                }}
+                value={toAddress}
+              >
+                {Object.keys(tokenlist).map((token) => {
+                  return (
+                    <option value={tokenlist[token].address}>
+                      {tokenlist[token].symbol}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>

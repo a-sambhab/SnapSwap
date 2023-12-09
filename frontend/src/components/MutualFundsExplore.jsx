@@ -9,7 +9,7 @@ export const MutualFundsExplore = ({ largeCap, smallCap, midCap }) => {
   const [midCapFunds, setMidCapFunds] = useState([]);
   const [smallCapFunds, setSmallCapFunds] = useState([]);
 
-  // console.log("Large",largeCap)
+  console.log("Large",largeCap)
 
   useEffect(() => {
     setLargeCapFunds([]);

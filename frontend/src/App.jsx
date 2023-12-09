@@ -7,7 +7,7 @@ import { Finalswap } from "./components/Finalswap";
 import { TokenSwap } from "./components/TokenSwap";
 import { Congrats } from "./pages/Congrats";
 import { response } from "./data/response";
-import Compare from "./components/Compare"
+import Compare from "./components/Compare";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -20,54 +20,66 @@ function App() {
 
   const [smallCap, setSmallCap] = useState([]);
 
-  const [poolerData, setPoolerData] = useState({})
+  // const [allTokens, setAllTokens] = useState([]);
+
+  const [poolerData, setPoolerData] = useState({});
+
+  const [responseData, setResponseData] = useState([]);
+  // const [first, setfirst] = useState(second)
 
   const fetchData = async () => {
     try {
+      const response1 = await axios.get(
+        "https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dht9a7tdv9q004vwph1x79fydqypd47dd8vzvy2zd8x51c406lf"
+      );
+      const response2 = await axios.get(
+        "https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dm1uuht9e59h4qrvqs9pjx8a3cf1sz7x7j0vyyolywu8v3abls8"
+      );
+
+      let flag1 = response1.data;
+
+      let flag2 = response2.data;
+      // console.log("response", flag1);
+      // console.log("pooler", flag2);
+
       const response = await axios
-        .get(
-          "https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dht9a7tdv9q004vwph1x79fydqypd47dd8vzvy2zd8x51c406lf"
-        )
+        .get(`https://gateway.lighthouse.storage/ipfs/${flag1}`)
         .then((data) => data.data);
+
       const pooler = await axios
-        .get(
-          "https://gateway.lighthouse.storage/ipns/k51qzi5uqu5dm1uuht9e59h4qrvqs9pjx8a3cf1sz7x7j0vyyolywu8v3abls8"
-        )
-        // console.log(pooler.data)
-        setPoolerData(pooler.data)
+        .get(`https://gateway.lighthouse.storage/ipfs/${flag2}`)
+        .then((data) => data.data);
+      setSmallCap([]);
+      setMidCap([]);
+      setLargeCap([]);
+      // console.log("response", response);
+      console.log("pooler", pooler);
       const data = Object.keys(response);
-
-      // console.log(data.length);
-
-      for (let i = 0; i < data.length; i++) {
-        const val = {
-          name: data[i],
-          ...response[data[i]],
-        };
-
-        // console.log(val);
-
-        if (val.risk === "low") {
-          setLargeCap((largeCap) => [...largeCap, val]);
-        } else if (val.risk === "mid") {
-          // console.log(val);
-          setMidCap((midCap) => [...midCap, val]);
-        } else if (val.risk === "high") {
-          setSmallCap((smallCap) => [...smallCap, val]);
+      data.map((coin) => {
+        // console.log(response[coin].risk);
+        if (response[coin].risk == "low") {
+          // console.log({ [coin]: response[coin] });
+          setLargeCap([...largeCap, { [coin]: response[coin] }]);
+        } else if (response[coin].risk == "mid") {
+          setMidCap([...midCap, { [coin]: response[coin] }]);
+        } else {
+          setSmallCap([...smallCap, { [coin]: response[coin] }]);
         }
-      }
+      });
+      setPoolerData(pooler);
+      setResponseData(response);
     } catch (error) {}
-
-    setLargeCap((largeCap) => largeCap.slice(0,10));
   };
 
-  useEffect(() => {
-    fetchData();
+  useEffect(async () => {
+    await fetchData();
+    // console.log(responseData, poolerData);
+    // separateData();
   }, []);
 
-  // console.log(largeCap);
-  // console.log(midCap);
-  // console.log(smallCap);
+  // console.log("lg", largeCap);
+
+  // console.log("all tokens", allTokens);
 
   return (
     <>
@@ -95,12 +107,16 @@ function App() {
           <Route exact path="/coins/:coin" element={<TokenSwap />}></Route>
 
           <Route exact path="/:swap" element={<Finalswap />}></Route>
-          <Route exact path="/compare" element={<Compare
-              largeCap={largeCap}
-              midCap={midCap}
-              smallCap={smallCap}
-              poolerData={poolerData}
-          />}></Route>
+          <Route
+            exact
+            path="/compare"
+            element={
+              <Compare
+                poolerData={poolerData}
+                responseData={responseData}
+              />
+            }
+          ></Route>
         </Routes>
       </div>
     </>

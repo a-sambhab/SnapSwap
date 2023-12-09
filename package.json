@@ -28,5 +28,10 @@
     "hardhat": "^2.12.5",
     "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.2"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.1",
+    "faker": "^6.6.6",
+    "react-chartjs-2": "^5.2.0"
   }
 }

@@ -1,83 +1,136 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import CanvasJSReact from "@canvasjs/react-charts";
+import axios, { all } from "axios";
 
-const Compare = (props) => {
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
+const Chart = (props) => {
+  const [token1data, setToken1data] = useState([]);
+  const [token2data, setToken2data] = useState([]);
+  useEffect(() => {
+    console.log(props);
+    if (props.token1 && props.token2) {
+      setToken1data(
+        props.token2.map((item) => {
+          return { y: item.price, label: item.epoch };
+        })
+      );
+      setToken2data(
+        props.token1.map((item) => {
+          return { y: item.price, label: item.epoch };
+        })
+      );
+    }
+  }, [props]);
+
+  const options = {
+    animationEnabled: true,
+    title: {
+      text: "Comparison of Tokens",
+    },
+    axisY: {
+      title: "Price",
+    },
+    toolTip: {
+      shared: true,
+    },
+    data: [
+      {
+        type: "spline",
+        name: "token1",
+        showInLegend: true,
+        dataPoints: token1data,
+      },
+      {
+        type: "spline",
+        name: "token2",
+        showInLegend: true,
+        dataPoints: token2data,
+      },
+    ],
+  };
   return (
     <>
-      <div className=" mx-auto mt-12 flex h-[60vh] w-[50vw] flex-col justify-between rounded-lg bg-gradient-to-r from-[#427A53] to-[#258C91]	">
-        <div className="flex justify-evenly items-center flex-col w-full h-4/5 ">
-          <div className="flex flex-row w-1/2  justify-center items-center">
-            <div className="w-1/2 pl-32 mb-2">
-              <h1 className="text-xl font-small text-white ">From</h1>
-            </div>
+      <CanvasJSChart options={options} />{" "}
+    </>
+  );
+};
 
-            <div className=" flex w-[60%] ">
-              <div className="w-[40%]  ">
-                <select
-                  id=""
-                  className=" w-[100%]  border  p-2  rounded-r-xl "
-                  onChange={(e) => {
-                    setFromAddress(e.target.value);
-                    getexchangerate();
-                  }}
-                  value={fromAddress}
-                >
-                  {Object.keys(tokenlist).map((token) => {
-                    return (
-                      <option value={tokenlist[token].address}>
-                        {tokenlist[token].symbol}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-            </div>
+const Compare = (props) => {
+  const [token1, setToken1] = useState("");
+  const [token2, setToken2] = useState("");
+  const [token1data, setToken1data] = useState([]);
+  const [token2data, setToken2data] = useState([]);
+
+  const { poolerData, responseData } = props;
+  // console.log(poolerData);
+
+  const handleToken1 = (token) => {
+    setToken1(token);
+    for (var d in poolerData[token]) {
+      // console.log({ y: poolerData[token][d]["price"], label: d });
+    }
+  };
+
+  const handleToken2 = (token) => {
+    setToken2(token);
+    for (var d in poolerData[token]) {
+    }
+  };
+  return (
+    <>
+      <div className=" mx-auto mt-4 flex h-[80vh] w-[75vw] flex-row justify-between rounded-lg bg-gradient-to-r from-[#427A53] to-[#258C91]	">
+        <div className="w-1/4 h-full bg-black bg-opacity-10">
+          {/* {token1data ? token1data[0].y : 0} */}
+          <div className="w-full h-1/2 border-b flex flex-col justify-evenly items-center">
+            <div className="w-full ml-2 text-white">Select Token 1</div>
+            <select
+              className="w-[100%] p-2 border-1 border-[#000000] rounded-md"
+              type="text"
+              value={token1}
+              onChange={(e) => {
+                handleToken1(e.target.value);
+                // console.log(token1data);
+              }}
+              placeholder="Select Token 1"
+            >
+              <option>Token 1</option>
+              {Object.keys(responseData).map((coin) => {
+                return <option value={coin}>{coin}</option>;
+              })}
+              {/* <option>Select Token 1</option> */}
+            </select>
           </div>
-
-          <div className="flex flex-col w-full  justify-center items-center ">
-            <div className="w-full pl-32 mb-2">
-              <h1 className="text-xl font-small text-white">To</h1>
-            </div>
-
-            <div className=" flex w-[60%] rounded-lg ">
-              <div className="w-[60%] ">
-                <input
-                  className="w-[100%] p-2 border-1 border-[#000000] rounded-l-xl"
-                  type="text"
-                  placeholder="100"
-                  value={toAmount}
-                  readonly
-                />
-              </div>
-
-              <div className="w-[40%] ">
-                <select
-                  id=""
-                  className=" w-[100%]   border  p-2 rounded-r-xl "
-                  onChange={(e) => {
-                    setToAddress(e.target.value);
-                    getexchangerate();
-                  }}
-                  value={toAddress}
-                >
-                  {Object.keys(tokenlist).map((token) => {
-                    return (
-                      <option value={tokenlist[token].address}>
-                        {tokenlist[token].symbol}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-            </div>
+          <div className="w-full h-1/2 flex flex-col justify-evenly items-center">
+            <div className="w-full ml-2 text-white">Select Token 2</div>
+            <select
+              className="w-[100%] p-2 border-1 border-[#000000] rounded-md"
+              type="text"
+              value={token2}
+              onChange={(e) => {
+                handleToken2(e.target.value);
+              }}
+              placeholder="Select Token 1"
+            >
+              <option>Token 2</option>
+              {Object.keys(responseData).map((coin) => {
+                return <option value={coin}>{coin}</option>;
+              })}
+              <option>Select Token 1</option>
+            </select>
           </div>
         </div>
-
-        <div className=" mb-6 flex items-center justify-center">
-          <Link to="/congrats">
-            <button className=" rounded-sm bg-[#132831]  px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80">
-              Swap Token
-            </button>
-          </Link>
+        <div className="w-3/4 h-full">
+          {token1 && token2 ? (
+            <>
+              <Chart token1={poolerData[token1]} token2={poolerData[token2]} />
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </>

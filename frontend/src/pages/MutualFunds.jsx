@@ -4,7 +4,7 @@ import { MutualFundsDashboard } from "../components/MutualFundsDashboard";
 import { response } from "../data/response";
 import { useState, useEffect } from "react";
 export const MutualFunds = ({ largeCap, smallCap, midCap }) => {
-  console.log(largeCap);
+  console.log(largeCap, smallCap, midCap);
 
   // console.log("large",largeCap.length);
 
