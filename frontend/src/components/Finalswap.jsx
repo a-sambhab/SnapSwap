@@ -30,6 +30,7 @@ export const Finalswap = () => {
     const response = await axios.post("http://localhost:8080/getexchangerate", {
       src: fromAddress,
       dst: toAddress,
+      chain: 1
     });
     console.log(response);
     setExchange(Number(response.data.toAmount));
