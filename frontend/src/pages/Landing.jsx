@@ -80,19 +80,19 @@ export const Landing = () => {
           <div className="flex w-[70vw] flex-col gap-4 ">
             <div className="flex gap-4  ">
               <div className="">
-                <img src="https://ik.imagekit.io/gourab18/Rectangle%204%20(1).png?updatedAt=1701611443635" />
+                <img src="https://ik.imagekit.io/gourab18/Group%2024.png?updatedAt=1702147945803" />
               </div>
               <div className="">
-                <img src="https://ik.imagekit.io/gourab18/Rectangle%205%20(1).png?updatedAt=1701611443558" />
+                <img src="https://ik.imagekit.io/gourab18/Group%2036.png?updatedAt=1702148305638" />
               </div>
             </div>
 
             <div className="flex gap-4   ">
               <div className="">
-                <img src="https://ik.imagekit.io/gourab18/Rectangle%205%20(1).png?updatedAt=1701611443558" />
+                <img src="https://ik.imagekit.io/gourab18/Group%2039.png?updatedAt=1702148315073" />
               </div>
               <div className="">
-                <img src="https://ik.imagekit.io/gourab18/Rectangle%204%20(1).png?updatedAt=1701611443635" />
+                <img src="https://ik.imagekit.io/gourab18/Group%2040.png?updatedAt=1702148321018" />
               </div>
             </div>
           </div>
@@ -100,7 +100,7 @@ export const Landing = () => {
           <div className="  ">
             <img
               className="h-[87%] w-[100%]"
-              src="https://ik.imagekit.io/gourab18/Rectangle%208%20(1).png?updatedAt=1701612436700"
+              src="https://ik.imagekit.io/gourab18/Group%2037.png?updatedAt=1702148321065"
             />
           </div>
         </div>

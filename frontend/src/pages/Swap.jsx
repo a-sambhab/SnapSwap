@@ -79,17 +79,17 @@ export const Swap = (props) => {
   const funds = [
     {
       text: "High Risk",
-      img: "https://ik.imagekit.io/gourab18/Rectangle%205%20(2).png?updatedAt=1701613631720",
+      img: "https://ik.imagekit.io/gourab18/Group%2032.png?updatedAt=1702158234594",
       data: hightokenList,
     },
     {
       text: "Mid Risk",
-      img: "https://ik.imagekit.io/gourab18/Rectangle%206%20(1).png?updatedAt=1701613631701",
+      img: "https://ik.imagekit.io/gourab18/Group%2031.png?updatedAt=1702158234690",
       data: midtokenList,
     },
     {
       text: "Low Risk",
-      img: "https://ik.imagekit.io/gourab18/Rectangle%208%20(2).png?updatedAt=1701613631826",
+      img: "https://ik.imagekit.io/gourab18/Group%2035.png?updatedAt=1702158255632",
       data: lowtokenList,
     },
   ];

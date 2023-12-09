@@ -9,6 +9,11 @@ import { useToken } from "wagmi";
 const { Alchemy, Network } = require("alchemy-sdk");
 
 export const Navbar = () => {
+  const [activeButton, setActiveButton] = useState("Button1");
+
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+  };
   const { address, isConnecting, isDisconnected } = useAccount();
 
   const [tokens, setTokens] = useState([]);
@@ -78,9 +83,7 @@ export const Navbar = () => {
     <div className="flex  w-screen  items-center justify-between border-b-[0.005px] border-[#868686] px-12  py-2   text-white  md:text-[25px]">
       <div>
         <Link to="/">
-          <h1 className="text-xl font-medium text-white hover:opacity-60 cursor:pointer">
-            DSWAP{" "}
-          </h1>
+          <h1 onClick={() => handleButtonClick("Button1")}>SNAPSWAP </h1>
         </Link>
       </div>
       <div className="flex gap-6 justify-center items-center">
@@ -88,15 +91,37 @@ export const Navbar = () => {
           <>
             <div>
               <Link to="/invest">
-                <h1 className="text-sm font-medium text-[#18BB90] hover:opacity-60 cursor:pointer active:text-black">
-                  MUTUAL FUNDS
+                <h1
+                  className={`text-sm font-medium text-[#18BB90] hover:opacity-60 cursor:pointer active:text-black ${
+                    activeButton === "Button2" ? "text-[#18BB90]" : "text-white"
+                  }`}
+                  onClick={() => handleButtonClick("Button2")}
+                >
+                  Bit Baskets
                 </h1>
               </Link>
             </div>
             <div>
               <Link to="/token">
-                <h1 className="text-sm font-medium  text-white hover:opacity-60 cursor:pointer">
-                  SWAP
+                <h1
+                  className={`text-sm font-medium text-[#18BB90] hover:opacity-60 cursor:pointer active:text-black ${
+                    activeButton === "Button3" ? "text-[#18BB90]" : "text-white"
+                  }`}
+                  onClick={() => handleButtonClick("Button3")}
+                >
+                  Token
+                </h1>
+              </Link>
+            </div>
+            <div>
+              <Link to="/compare">
+                <h1
+                  className={`text-sm font-medium text-[#18BB90] hover:opacity-60 cursor:pointer active:text-black ${
+                    activeButton === "Button4" ? "text-[#18BB90]" : "text-white"
+                  }`}
+                  onClick={() => handleButtonClick("Button4")}
+                >
+                  Compare
                 </h1>
               </Link>
             </div>

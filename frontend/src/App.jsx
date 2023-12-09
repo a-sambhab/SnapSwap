@@ -53,7 +53,7 @@ function App() {
       setMidCap([]);
       setLargeCap([]);
       // console.log("response", response);
-      console.log("pooler", pooler);
+      // console.log("pooler", pooler);
       const data = Object.keys(response);
       data.map((coin) => {
         // console.log(response[coin].risk);
@@ -73,11 +73,7 @@ function App() {
 
   useEffect(async () => {
     await fetchData();
-    // console.log(responseData, poolerData);
-    // separateData();
   }, []);
-
-  // console.log("lg", largeCap);
 
   // console.log("all tokens", allTokens);
 
@@ -96,6 +92,8 @@ function App() {
                 largeCap={largeCap}
                 midCap={midCap}
                 smallCap={smallCap}
+                poolerData={poolerData}
+                responseData={responseData}
               />
             }
           ></Route>

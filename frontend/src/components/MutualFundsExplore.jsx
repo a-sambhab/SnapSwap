@@ -2,58 +2,61 @@ import React from "react";
 import { WideCard } from "./WideCard";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-export const MutualFundsExplore = ({ largeCap, smallCap, midCap }) => {
+export const MutualFundsExplore = (props) => {
   const [tag, setTag] = useState("largeCap");
 
-  const [largeCapFunds, setLargeCapFunds] = useState([]);
-  const [midCapFunds, setMidCapFunds] = useState([]);
-  const [smallCapFunds, setSmallCapFunds] = useState([]);
+  const { responseData, poolerData } = props;
 
-  console.log("Large",largeCap)
+  const [largeCap, setLargeCap] = useState([]);
+  const [midCap, setMidCap] = useState([]);
+  const [smallCap, setSmallCap] = useState([]);
 
+  const [activeButton, setActiveButton] = useState("LargeCap");
+
+  console.log("Pooler", poolerData);
+  console.log("Response", responseData);
+
+  const separateData = () => {
+    var l = [],
+      m = [],
+      h = [];
+    Object.keys(responseData).map((coin) => {
+      if (responseData[coin].risk == "low") {
+        l.push({ ...responseData[coin], name: coin });
+      } else if (responseData[coin].risk == "mid") {
+        // setmidTokenList(...midtokenList, {coin: coin, data: responseData[coin]})
+        m.push({ ...responseData[coin], name: coin });
+      } else if (responseData[coin].risk == "high") {
+        // sethighTokenList(...hightokenList, {coin: coin, data: responseData[coin]})
+        h.push({ ...responseData[coin], name: coin });
+      }
+    });
+    // console.log(l,m,h)
+    setLargeCap(h);
+    setMidCap(m);
+    setSmallCap(l);
+  };
   useEffect(() => {
-    setLargeCapFunds([]);
-    setMidCapFunds([]);
-    setSmallCapFunds([]);
+    separateData();
+  }, [props]);
 
-    setLargeCapFunds((largeCapFunds) => [
-      ...largeCapFunds,
-      largeCap[0],
-      largeCap[3],
-      midCap[1],
-      smallCap[2],
-    ]);
-    setMidCapFunds((midCapFunds) => [
-      ...midCapFunds,
-      midCap[0],
-      midCap[3],
-      largeCap[1],
-      smallCap[2],
-    ]);
-
-    setSmallCapFunds((smallCapFunds) => [
-      ...smallCapFunds,
-      midCap[0],
-      largeCap[3],
-      smallCap[1],
-      smallCap[2],
-    ]);
-  }, []);
+  console.log("lg", largeCap);
+  console.log("mid", midCap);
+  console.log("small", smallCap);
 
   const funds = [
     {
       text: "LargeCap",
-      img: "https://ik.imagekit.io/gourab18/Rectangle%205%20(2).png?updatedAt=1701613631720",
 
       funds: [
         {
           name: "Doxy",
           img: "https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239",
-          data: largeCapFunds,
+          data: [largeCap[0], largeCap[1], midCap[0], smallCap[0]],
         },
       ],
 
-      img: "https://ik.imagekit.io/gourab18/Rectangle%205%20(2).png?updatedAt=1701613631720",
+      img: "https://ik.imagekit.io/gourab18/Group%2025.png?updatedAt=1702149267467",
     },
     {
       text: "MidCap",
@@ -61,10 +64,10 @@ export const MutualFundsExplore = ({ largeCap, smallCap, midCap }) => {
         {
           name: "Steradium",
           img: "https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239",
-          data: midCapFunds,
+          data: [largeCap[0], midCap[1], midCap[0], smallCap[0]],
         },
       ],
-      img: "https://ik.imagekit.io/gourab18/Rectangle%206%20(1).png?updatedAt=1701613631701",
+      img: "https://ik.imagekit.io/gourab18/Group%2026.png?updatedAt=1702149267754",
     },
     {
       text: "SmallCap",
@@ -72,10 +75,10 @@ export const MutualFundsExplore = ({ largeCap, smallCap, midCap }) => {
         {
           name: "Capex",
           img: "https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239",
-          data: smallCapFunds,
+          data: [largeCap[0], midCap[1], smallCap[0], smallCap[1]],
         },
       ],
-      img: "https://ik.imagekit.io/gourab18/Rectangle%208%20(2).png?updatedAt=1701613631826",
+      img: "https://ik.imagekit.io/gourab18/Group%2027.png?updatedAt=1702149267577",
     },
   ];
 
@@ -86,15 +89,23 @@ export const MutualFundsExplore = ({ largeCap, smallCap, midCap }) => {
     setTag(data);
     // console.log(data);
     setFundData(arr[0].funds);
+    setActiveButton(data);
   };
   return (
     <>
       <div className="flex">
-        <div className="flex  min-h-[100vh]  w-[20vw] flex-col items-center justify-center gap-8 border-r-[0.005px] ">
+        <div
+          className={`flex  min-h-[100vh]  w-[20vw] flex-col items-center justify-center gap-8 border-r-[0.005px]  `}
+        >
           {funds.map((fund, index) => {
             return (
               <div>
-                <button onClick={() => decideFund(fund.text)}>
+                <button
+                  onClick={() => decideFund(fund.text)}
+                  className={`${
+                    activeButton === fund.text ? "transform scale-110" : ""
+                  }`}
+                >
                   <img src={fund.img} />
                 </button>
               </div>
@@ -104,14 +115,15 @@ export const MutualFundsExplore = ({ largeCap, smallCap, midCap }) => {
         <div className="ml-4 flex  min-h-[100vh] flex-col items-center gap-8 py-6">
           {fundData.map((data) => {
             return (
-              // data.map((val)=>console.log(val))
-              <Link to={`/invest/${data.name}`}>
-                <WideCard
-                  img="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239"
-                  content={data.name}
-                  tag={tag}
-                />
-              </Link>
+              <>
+                <Link to={`/invest/${data.name}`}>
+                  <WideCard
+                    img="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239"
+                    content={data.name}
+                    tag={tag}
+                  />
+                </Link>
+              </>
             );
           })}
 
