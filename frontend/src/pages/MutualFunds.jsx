@@ -3,14 +3,7 @@ import { MutualFundsExplore } from "../components/MutualFundsExplore";
 import { MutualFundsDashboard } from "../components/MutualFundsDashboard";
 import { response } from "../data/response";
 import { useState, useEffect } from "react";
-export const MutualFunds = ({ largeCap, smallCap, midCap }) => {
-  console.log(largeCap, smallCap, midCap);
-
-  // console.log("large",largeCap.length);
-
-  // console.log("mid",midCap.length)
-  // console.log("small",smallCap.length);
-
+export const MutualFunds = ({ poolerData, responseData }) => {
   const [flag, setFlag] = useState(0);
 
   const data = [
@@ -56,9 +49,8 @@ export const MutualFunds = ({ largeCap, smallCap, midCap }) => {
 
       {flag === 0 ? (
         <MutualFundsExplore
-          largeCap={largeCap}
-          midCap={midCap}
-          smallCap={smallCap}
+          poolerData={poolerData}
+          responseData={responseData}
         />
       ) : (
         <MutualFundsDashboard />
