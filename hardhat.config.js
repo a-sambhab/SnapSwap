@@ -8,12 +8,16 @@ require("./tasks/faucet");
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: "0.8.17",
-  networks:
-  {
-    matic:{
+  networks: {
+    matic: {
       url: process.env.RPC_URL,
-      accounts: [process.env.PRIVATE_KEY]
-    }
-  }
-
+      accounts: [process.env.PRIVATE_KEY],
+    },
+    baseGoerli: {
+      url: `${process.env.BASE_GOERLI_ALCHEMY_API_URL}`,
+      accounts: {
+        mnemonic,
+      },
+    },
+  },
 };
