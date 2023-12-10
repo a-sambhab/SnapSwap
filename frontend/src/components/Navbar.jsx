@@ -16,14 +16,14 @@ import Web3 from 'web3';
 // const wallet = new ethers.Wallet(privateKey, provider);
 
 
-const web3 = new Web3(`https://polygon-mumbai.g.alchemy.com/v2/s2682Miu79bPHBPdz7caGXHut5rbqwUq`); // Replace with your actual Infura API key
+// const web3 = new Web3(`https://polygon-mumbai.g.alchemy.com/v2/s2682Miu79bPHBPdz7caGXHut5rbqwUq`); // Replace with your actual Infura API key
 
 // Connect to the deployed contract
-const contractAddress = '0xA0074119A15C777642Eb98522F30211b61BA6A1C'; // Replace with your actual contract address
-const abi = require('../contracts/SnapSwap.json'); // Replace with your actual ABI path
-const contract = new web3.eth.Contract(abi, contractAddress);
+// const contractAddress = '0xA0074119A15C777642Eb98522F30211b61BA6A1C'; // Replace with your actual contract address
+// const abi = require('../contracts/SnapSwap.json'); // Replace with your actual ABI path
 // const contract = new web3.eth.Contract(abi, contractAddress);
-console.log("contract", contract.methods)
+// const contract = new web3.eth.Contract(abi, contractAddress);
+// console.log("contract", contract.methods)
 // const { Alchemy, Network } = require("alchemy-sdk");
 // import { Alchemy, Network } from "alchemy-sdk";
 

@@ -11,7 +11,7 @@ const WideCardToken = (props) =>{
       <div className="flex">
         {props.img && (
           <div>
-            <img src={props.img} />
+            <img src={props.img} className="h-20 w-20 rounded-lg" />
           </div>
         )}
 
@@ -97,13 +97,9 @@ export const Swap = (props) => {
 
   return (
     <div className="">
-      <div className="flex items-center justify-center gap-12">
-        <button className=" rounded-lg bg-gradient-to-r from-[#427A53] to-[#258C91] px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80">
-          Explore
-        </button>
-      </div>
+     
 
-      <div className="flex">
+      <div className="flex ">
         <div className="flex  min-h-[100vh]  w-[20vw] flex-col items-center justify-center gap-8 border-r-[0.005px]  ">
           {funds.map((fund, index) => {
             return (
@@ -119,7 +115,7 @@ export const Swap = (props) => {
           })}
         </div>
 
-        <div className="ml-4 flex overflow-y-scroll h-[100vh] flex-col items-center gap-8 py-6">
+        <div className=" flex  h-[100vh] w-4/5 flex-col items-center gap-8 py-6 mt-16">
           {tokenList.map((tokeninfo) => {
             var path = `/coins/${tokeninfo.name}`
             console.log(tokeninfo)
@@ -129,7 +125,7 @@ export const Swap = (props) => {
                 <div>
                   <WideCardToken 
                     token = {tokeninfo}
-                    img = "https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239"
+                    img = "https://res.cloudinary.com/dzbdnlr0f/image/upload/v1702167509/image_processing20191028-22527-1rsv9eh_nkk8ed.png"
                   />
                 </div>
               </Link>

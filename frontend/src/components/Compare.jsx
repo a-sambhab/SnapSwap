@@ -83,13 +83,13 @@ const Compare = (props) => {
   };
   return (
     <>
-      <div className=" mx-auto mt-4 flex h-[80vh] w-[75vw] flex-row justify-between rounded-lg bg-gradient-to-r from-[#427A53] to-[#258C91]	">
-        <div className="w-1/4 h-full bg-black bg-opacity-10">
+      <div className=" mx-auto mt-4 flex h-[90vh] w-[90vw] flex-row justify-between rounded-lg bg-gradient-to-r from-[#427A53] to-[#258C91]	">
+        <div className="w-1/3 h-full bg-black bg-opacity-10">
           {/* {token1data ? token1data[0].y : 0} */}
-          <div className="w-full h-1/2 border-b flex flex-col justify-evenly items-center">
-            <div className="w-full ml-2 text-white text-xl">Select Token 1</div>
+          <div className="w-full h-1/2 border-b flex flex-col justify-center items-center">
+            <div className="w-1/2 ml-2 text-white text-xl mb-4">Select Token 1</div>
             <select
-              className="w-[100%] p-2 border-1 border-[#000000] text-xl rounded-md"
+              className="w-[50%] p-2 border-1 border-[#000000] text-xl rounded-md"
               type="text"
               value={token1}
               onChange={(e) => {
@@ -105,10 +105,10 @@ const Compare = (props) => {
               {/* <option>Select Token 1</option> */}
             </select>
           </div>
-          <div className="w-full h-1/2 flex flex-col justify-evenly items-center">
-            <div className="w-full ml-2 text-white text-xl">Select Token 2</div>
+          <div className="w-full h-1/2 border-b flex flex-col justify-center items-center ">
+            <div className="w-1/2 ml-2 text-white text-xl mb-4">Select Token 2</div>
             <select
-              className="w-[100%] p-2 border-1 border-[#000000] text-xl rounded-md"
+              className="w-[50%] p-2 border-1 border-[#000000] text-xl rounded-md"
               type="text"
               value={token2}
               onChange={(e) => {
@@ -124,7 +124,7 @@ const Compare = (props) => {
             </select>
           </div>
         </div>
-        <div className="w-3/4 h-full">
+        <div className="w-full h-full px-4">
         <div className="w-full h-1/5 flex flex-row justify-evenly items-center text-xl text-white" onChange={(e)=>{setParameter(e.target.value)}} value={parameter}>
           Select Parameter
           <select className="w-[20%] p-2 border-1 border-[#000000] rounded-md text-black">
@@ -134,7 +134,7 @@ const Compare = (props) => {
             <option value="liquidity">Liquidity</option>
           </select>
         </div>
-        <div className="w-full h-4/5">
+        <div className="w-4/5 h-4/5 p-4  ml-24">
           {token1 && token2 ? (
             <>
               <Chart token1={poolerData[token1]} name1={token1} name2={token2} token2={poolerData[token2]} parameter={parameter} />

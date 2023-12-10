@@ -8,8 +8,8 @@ export const Congrats = () => {
           <div className="flex flex-col justify-center items-center">
             <div className="h-[60%]  justify-center items-center flex ">
               <img
-                className="h-[60%] w-[60%] "
-                src="https://ik.imagekit.io/gourab18/Group%2023.png?updatedAt=1701685587081"
+                className="h-64 w-64 "
+                src="https://res.cloudinary.com/dzbdnlr0f/image/upload/v1702167065/xycjit6gtfpuebvhxyre.png"
               />
             </div>
 
@@ -18,7 +18,7 @@ export const Congrats = () => {
             </div>
 
             <div>
-              <h2 className="text-sm font-medium text-white mt-4 w-[20vw]">
+              <h2 className="text-sm font-medium text-white mt-4 pl-6 w-[20vw]">
                 Congrats Your Coin Has been swapped
               </h2>
             </div>

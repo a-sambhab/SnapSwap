@@ -18,10 +18,10 @@ export const Landing = () => {
   return (
     <>
       <div className="mt-12 pb-4">
-        <div className=" mx-auto flex h-[70vh] w-[80vw] rounded-lg bg-gradient-to-r from-[#427A53] to-[#258C91]	">
+        <div className=" mx-auto flex h-[70vh] w-[80vw] rounded-lg bg-gradient-to-r  drop-shadow-[0_35px_35px_rgba(255,255,255,0.15)] from-[#427A53] to-[#258C91]	">
           <div className="ml-16 flex w-1/2  flex-col justify-center gap-6  ">
             <div>
-              <h1 className="text-xl font-bold italic	tracking-normal	text-[#FFF]	">
+              <h1 className="text-xl font-bold 	tracking-normal	text-[#FFF] text-[40px]	">
                 Invest In Everything
               </h1>
             </div>
@@ -34,7 +34,7 @@ export const Landing = () => {
 
             <div>
               {isDisconnected && (
-                <button className=" rounded-sm bg-[#132831]  px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80">
+                <button className="  bg-[#132831]  rounded-xl px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80">
                   Connect Wallet
                 </button>
               )}
@@ -56,7 +56,7 @@ export const Landing = () => {
           </div>
         </div>
 
-        <div className="mt-12 flex min-h-[10vh] w-screen items-center justify-around bg-[#1F2839] ">
+        <div className="mt-12 flex min-h-[10vh] w-screen items-center justify-around bg-[#141A28] ">
           {images.map((image, index) => {
             return (
               <section key={index}>
@@ -69,37 +69,37 @@ export const Landing = () => {
         </div>
       </div>
 
-      <div className="mt-12">
+      <div className="mt-12  ">
         <div className="mb-10 ml-10 ">
-          <h1 className="font-serif text-xl	 capitalize	italic	tracking-normal text-[#FFF]">
+          <h1 className="font-serif text-[30px] capitalize	font-bold	tracking-normal text-[#FFF]">
             EVERYTHING WE CAN DO FOR YOU
           </h1>
         </div>
 
-        <div className="mx-4 flex justify-evenly ">
+        <div className="mx-4 flex justify-evenly  pl-4 ">
           <div className="flex w-[70vw] flex-col gap-4 ">
             <div className="flex gap-4  ">
-              <div className="">
+              <div className="drop-shadow-[0_35px_35px_rgba(255,255,255,0.15)] ">
                 <img src="https://ik.imagekit.io/gourab18/Group%2024.png?updatedAt=1702147945803" />
               </div>
-              <div className="">
+              <div className="drop-shadow-[0_35px_35px_rgba(255,255,255,0.15)] ">
                 <img src="https://ik.imagekit.io/gourab18/Group%2036.png?updatedAt=1702148305638" />
               </div>
             </div>
 
             <div className="flex gap-4   ">
-              <div className="">
+              <div className="drop-shadow-[0_35px_35px_rgba(255,255,255,0.15)] ">
                 <img src="https://ik.imagekit.io/gourab18/Group%2039.png?updatedAt=1702148315073" />
               </div>
-              <div className="">
+              <div className="drop-shadow-[0_35px_35px_rgba(255,255,255,0.15)] ">
                 <img src="https://ik.imagekit.io/gourab18/Group%2040.png?updatedAt=1702148321018" />
               </div>
             </div>
           </div>
 
-          <div className="  ">
+          <div className=" drop-shadow-[0_35px_35px_rgba(255,255,255,0.15)]  ">
             <img
-              className="h-[87%] w-[100%]"
+              className="h-[98%] w-[100%]"
               src="https://ik.imagekit.io/gourab18/Group%2037.png?updatedAt=1702148321065"
             />
           </div>

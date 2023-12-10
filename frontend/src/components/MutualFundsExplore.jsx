@@ -112,7 +112,7 @@ export const MutualFundsExplore = (props) => {
             );
           })}
         </div>
-        <div className="ml-4 flex  min-h-[100vh] flex-col items-center gap-8 py-6">
+        <div className="ml-4 flex  min-h-[100vh] flex-col items-center gap-8 py-6 mt-6">
           {fundData.map((data) => {
             return (
               <>

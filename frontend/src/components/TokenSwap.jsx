@@ -66,13 +66,13 @@ export const TokenSwap = (props) => {
   return (
 
     <>
-      <div className=" mx-auto mt-12 flex h-[80vh] w-[80vw] rounded-lg bg-gradient-to-r from-[#427A53] to-[#258C91]	">
-        <div className="flex w-[40%]  flex-col items-center justify-center ">
-          <div className="flex w-[60%] justify-around my-4 ">
+      <div className=" mx-auto mt-12 flex h-[80vh] w-[90vw] rounded-lg bg-gradient-to-r from-[#427A53] to-[#258C91]	">
+        <div className="flex w-[45%]  flex-col items-center justify-center ">
+          <div className="flex w-[60%] my-4 ">
             <div>
               <img
-                className="h-20 w-20"
-                src="https://ik.imagekit.io/gourab18/image%2025.png?updatedAt=170161637239"
+                className="mr-4  h-20 w-20 rounded-lg"
+                src="https://res.cloudinary.com/dzbdnlr0f/image/upload/v1702167509/image_processing20191028-22527-1rsv9eh_nkk8ed.png"
               />
             </div>
 
@@ -104,7 +104,7 @@ export const TokenSwap = (props) => {
             </div>
           </div>
 
-          <div className="mt-4" style={{ alignItems: "flexEnd" }}>
+          <div className="mt-12" style={{ alignItems: "flexEnd" }}>
             <Link to={path}>
               <button className=" rounded-sm bg-[#132831]  px-4 py-2 text-center  text-sm font-medium uppercase text-white hover:opacity-80">
                 Swap Token
