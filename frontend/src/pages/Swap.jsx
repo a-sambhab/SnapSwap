@@ -68,6 +68,7 @@ export const Swap = (props) => {
     sethighTokenList(h);
     setmidTokenList(m);
     setlowTokenList(l);
+    setTokenList(h)
   };
   useEffect(() => {
     separateData();
