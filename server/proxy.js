@@ -6,6 +6,7 @@ const axios = require('axios');
 const app = express();
 const dotenv = require('dotenv')
 dotenv.config()
+console.log(process.env.INCH_API_KEY)
 app.use(express.json());
 app.use(cors());
 let config = {
